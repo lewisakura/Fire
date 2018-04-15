@@ -1,0 +1,11 @@
+version: beta-{build}-{branch}
+image: Visual Studio 2017
+
+cache:
+  - packages -> **\packages.config
+
+build:
+  project: Fire.sln
+
+artifacts:
+  - path: Fire\bin\Debug\Fire.exe
