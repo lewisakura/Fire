@@ -15,3 +15,5 @@ Fire was developed because of a small issue I had. Whenever I ALT+F4 an applicat
 You can download beta builds of Fire from [AppVeyor](https://ci.appveyor.com/project/LewisTehMinerz/Fire).
 
 You can download stable releases from the [Releases](https://github.com/LewisTehMinerz/Fire/releases) page.
+
+*Uses the [PSTaskDialog library](https://www.codeproject.com/Articles/21276/Vista-TaskDialog-Wrapper-and-Emulator) by Hedley Muscroft.*

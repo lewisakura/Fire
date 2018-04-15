@@ -53,7 +53,7 @@
       <HintPath>..\packages\Costura.Fody.2.0.0\lib\net452\Costura.dll</HintPath>
     </Reference>
     <Reference Include="PSTaskDialog">
-      <HintPath>..\..\..\..\..\..\..\Stuff\Libraries\PSTaskDialog\PSTaskDialog.dll</HintPath>
+      <HintPath>..\PSTaskDialog\PSTaskDialog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
