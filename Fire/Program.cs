@@ -4,11 +4,12 @@ using System.Windows.Forms;
 
 namespace Fire
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        private static void Main()
         {
-            Mutex m = new Mutex(true, "f89ae4f2-5042-43f4-8e56-2e42b2717b05");
+            var m = new Mutex(true, "f89ae4f2-5042-43f4-8e56-2e42b2717b05");
             if (!m.WaitOne(0, true))
             {
                 MessageBox.Show("Fire is already running.", "Fire", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -17,18 +18,16 @@ namespace Fire
 
             Application.EnableVisualStyles();
 
-            Program inst = new Program();
-
-            MenuItem exitItem = new MenuItem
+            var exitItem = new MenuItem
             {
                 Index = 0,
                 Text = "E&xit"
             };
 
-            ContextMenu menu = new ContextMenu();
+            var menu = new ContextMenu();
             menu.MenuItems.Add(exitItem);
 
-            NotifyIcon icon = new NotifyIcon
+            var icon = new NotifyIcon
             {
                 Text = "Fire",
                 ContextMenu = menu,
@@ -36,7 +35,7 @@ namespace Fire
                 Visible = true
             };
 
-            exitItem.Click += delegate (object Sender, EventArgs e)
+            exitItem.Click += delegate
             {
                 icon.Dispose();
                 Environment.Exit(0);
