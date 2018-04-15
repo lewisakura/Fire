@@ -9,7 +9,7 @@ namespace Fire
         [STAThread]
         private static void Main()
         {
-            var m = new Mutex(true, "f89ae4f2-5042-43f4-8e56-2e42b2717b05");
+            var m = new Mutex(true, "c332199a-cd13-47cc-a05b-93276fe80fef");
             if (!m.WaitOne(0, true))
             {
                 MessageBox.Show("Fire is already running.", "Fire", MessageBoxButtons.OK, MessageBoxIcon.Error);
