@@ -16,4 +16,14 @@ You can download beta builds of Fire from [AppVeyor](https://ci.appveyor.com/pro
 
 You can download stable releases from the [Releases](https://github.com/LewisTehMinerz/Fire/releases) page.
 
-*Uses the [PSTaskDialog library](https://www.codeproject.com/Articles/21276/Vista-TaskDialog-Wrapper-and-Emulator) by Hedley Muscroft.*
+### Special Thanks
+
+<p>
+    <a href="https://jetbrains.com/resharper/">
+        <img src="http://resources.jetbrains.com/storage/products/resharper/img/meta/resharper_logo_300x300.png" alt="ReSharper" width="100" align="right">
+    </a>
+    Special thanks to Jetbrains for their ReSharper tool. It's used to help build Fire. I highly recommend it to anyone who is coding in .NET and people who code in C++ because there's a version for you C++ developers!
+</p>
+<p>
+    Thanks to Hedley Muscroft for his <a href="https://www.codeproject.com/Articles/21276/Vista-TaskDialog-Wrapper-and-Emulator">PSTaskDialog Library</a>.
+</p>
