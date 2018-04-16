@@ -10,7 +10,7 @@ namespace Fire
     public partial class HotkeyHandler : Form
     {
 #if BETA
-        private String version = "0615333/master";
+        private String version = "%COMMIT_HASH%/master";
 #else
         private String version = Assembly.GetEntryAssembly().GetName().Version.ToString();
 #endif
@@ -25,7 +25,7 @@ namespace Fire
             CenterToScreen();
             cTaskDialog.ShowTaskDialogBox(this,
                 "About Fire",
-                "Fire {version}",
+                $"Fire {version}",
                 "A tool for killing process trees.\nCreated by LewisTehMinerz / Lewis Crichton\nLicensed under the MIT license."
 #if BETA
                 + "\n\nYou are running a beta version of Fire. Things may not work correctly. Remember, always report bugs on the GitHub repository.",
