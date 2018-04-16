@@ -14,9 +14,9 @@ install:
 assembly_info:
   patch: true 
   file: AssemblyInfo.* 
-  assembly_version: "{version}" 
-  assembly_file_version: "{version}" 
-  assembly_informational_version: "{version}"
+  assembly_version: "1.0.0.{version}" 
+  assembly_file_version: "1.0.0.{version}" 
+  assembly_informational_version: "1.0.0.{version}"
 
 build:
   project: Fire.sln
