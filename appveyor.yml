@@ -1,6 +1,9 @@
 version: beta-{build}-{branch}
 image: Visual Studio 2017
 
+init:
+- ps: Update-AppveyorBuild -Version "beta-$($env:appveyor_repo_commit.substring(0,7))-master"
+
 cache:
   - packages -> **\packages.config
   - PSTaskDialog
@@ -8,8 +11,16 @@ cache:
 install:
   - nuget restore
 
+assembly_info:
+  patch: true 
+  file: AssemblyInfo.* 
+  assembly_version: "{version}" 
+  assembly_file_version: "{version}" 
+  assembly_informational_version: "{version}"
+
 build:
   project: Fire.sln
 
 artifacts:
   - path: Fire\bin\Debug\Fire.exe
+  - path: Fire\bin\Debug\Fire.pdb
