@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using PSTaskDialog;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ namespace Fire
     public partial class HotkeyHandler : Form
     {
 #if BETA
-        private String version = "$COMMIT_HASH$/master";
+        private String version = "0615333/master";
 #else
         private String version = Assembly.GetEntryAssembly().GetName().Version.ToString();
 #endif
@@ -25,7 +25,7 @@ namespace Fire
             CenterToScreen();
             cTaskDialog.ShowTaskDialogBox(this,
                 "About Fire",
-                $"Fire {version}",
+                "Fire {version}",
                 "A tool for killing process trees.\nCreated by LewisTehMinerz / Lewis Crichton\nLicensed under the MIT license."
 #if BETA
                 + "\n\nYou are running a beta version of Fire. Things may not work correctly. Remember, always report bugs on the GitHub repository.",
@@ -77,7 +77,7 @@ namespace Fire
             var res = cTaskDialog.MessageBox(this,
                 "Kill it with Fire!",
                 "Are you sure?",
-                $"Are you sure you want to kill process '{Process.GetProcessById(pid).ProcessName}' (PID {pid}) with Fire, killing all subprocesses that were spawned by it?" +
+                "Are you sure you want to kill process '{Process.GetProcessById(pid).ProcessName}' (PID {pid}) with Fire, killing all subprocesses that were spawned by it?" +
                 "\n\nYou could lose unsaved work if any subprocesses containing edited documents were spawned by this process.",
                 eTaskDialogButtons.YesNo,
                 eSysIcons.Warning);
@@ -115,3 +115,8 @@ namespace Fire
         }
     }
 }
+
+
+
+
+
