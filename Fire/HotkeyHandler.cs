@@ -73,7 +73,20 @@ namespace Fire
 
             if (res == DialogResult.Yes)
             {
-                Fire.KillProcessAndChildren(pid);
+                try
+                {
+                    Fire.KillProcessAndChildren(pid);
+                }
+                catch (Exception e)
+                {
+                    cTaskDialog.MessageBox(this,
+                        "Error",
+                        "Failed to kill process tree.",
+                        $"An error occured while killing the process tree of '{Process.GetProcessById(pid).ProcessName}' (PID {pid})."
+                        + "\n\n" + e.Message,
+                        eTaskDialogButtons.OK,
+                        eSysIcons.Error);
+                }
             }
         }
 

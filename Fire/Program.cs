@@ -19,7 +19,7 @@ namespace Fire
                         var pid = int.Parse(args[1]);
                         Fire.KillProcessAndChildren(pid);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         // suppress errors, CLI is meant to be silent
                         Environment.Exit(-1);
