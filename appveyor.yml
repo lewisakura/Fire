@@ -11,12 +11,8 @@ cache:
 install:
   - nuget restore
 
-assembly_info:
-  patch: true 
-  file: AssemblyInfo.* 
-  assembly_version: "1.0.0.{version}" 
-  assembly_file_version: "1.0.0.{version}" 
-  assembly_informational_version: "1.0.0.{version}"
+before_build:
+- ps: "#define BETA\n" + (Get-Content "Fire\HotkeyHandler.cs" -Raw).replace("$COMMIT_HASH$", "$($env:appveyor_repo_commit.substring(0,7))") | Set-Content "Fire\HotkeyHandler.cs"
 
 build:
   project: Fire.sln

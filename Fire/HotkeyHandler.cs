@@ -3,14 +3,48 @@ using System.Windows.Forms;
 using PSTaskDialog;
 using System.Diagnostics;
 using System.Management;
+using System.Reflection;
 
 namespace Fire
 {
     public partial class HotkeyHandler : Form
     {
+#if BETA
+        private String version = "$COMMIT_HASH$/master";
+#else
+        private String version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+#endif
+
         public HotkeyHandler()
         {
             InitializeComponent();
+        }
+
+        public void ShowAboutDialog()
+        {
+            CenterToScreen();
+            cTaskDialog.ShowTaskDialogBox(this,
+                "About Fire",
+                $"Fire {version}",
+                "A tool for killing process trees.\nCreated by LewisTehMinerz / Lewis Crichton\nLicensed under the MIT license."
+#if BETA
+                + "\n\nYou are running a beta version of Fire. Things may not work correctly. Remember, always report bugs on the GitHub repository.",
+#else
+                ,
+#endif
+                "",
+                "",
+                "",
+                "",
+                "GitHub Repository",
+                eTaskDialogButtons.OK,
+                eSysIcons.Information,
+                eSysIcons.Question);
+            if (cTaskDialog.CommandButtonResult == 0)
+            {
+                cTaskDialog.CommandButtonResult = 1;
+                Process.Start("https://github.com/LewisTehMinerz/Fire");
+            }
         }
 
         private void HotkeyHandler_Load(object sender, EventArgs e)

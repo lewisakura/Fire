@@ -18,14 +18,23 @@ namespace Fire
 
             Application.EnableVisualStyles();
 
-            var exitItem = new MenuItem
+            var aboutItem = new MenuItem
             {
                 Index = 0,
+                Text = "About"
+            };
+
+            var exitItem = new MenuItem
+            {
+                Index = 1,
                 Text = "E&xit"
             };
 
             var menu = new ContextMenu();
+            menu.MenuItems.Add(aboutItem);
             menu.MenuItems.Add(exitItem);
+
+            var hotkeyHandler = new HotkeyHandler();
 
             var icon = new NotifyIcon
             {
@@ -35,13 +44,18 @@ namespace Fire
                 Visible = true
             };
 
+            aboutItem.Click += delegate
+            {
+                hotkeyHandler.ShowAboutDialog();
+            };
+
             exitItem.Click += delegate
             {
                 icon.Dispose();
                 Environment.Exit(0);
             };
 
-            Application.Run(new HotkeyHandler());
+            Application.Run(hotkeyHandler);
 
             Console.WriteLine("Fire initialized.");
         }
