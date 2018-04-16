@@ -12,7 +12,7 @@ install:
   - nuget restore
 
 before_build:
-  - ps: "\"#define BETA`r`n\" + (Get-Content \"Fire\\HotkeyHandler.cs\" -Raw).replace(\"%COMMIT_HASH%\", \"$($env:appveyor_repo_commit.substring(0,7))\") | Set-Content \"Fire\\HotkeyHandler.cs\""
+  - ps: "\"#define BETA`r`n\" + (Get-Content \"Fire\\Fire.cs\" -Raw).replace(\"%COMMIT_HASH%\", \"$($env:appveyor_repo_commit.substring(0,7))\") | Set-Content \"Fire\\Fire.cs\""
 
 build:
   project: Fire.sln

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -7,8 +8,26 @@ namespace Fire
     internal class Program
     {
         [STAThread]
-        private static void Main()
+        private static void Main(string[] args)
         {
+            if (args.Length > 0)
+            {
+                if (args[0] == "/pid")
+                {
+                    try
+                    {
+                        var pid = int.Parse(args[1]);
+                        Fire.KillProcessAndChildren(pid);
+                    }
+                    catch (Exception e)
+                    {
+                        // suppress errors, CLI is meant to be silent
+                        Environment.Exit(-1);
+                    }
+                }
+                Environment.Exit(0);
+            }
+
             var m = new Mutex(true, "c332199a-cd13-47cc-a05b-93276fe80fef");
             if (!m.WaitOne(0, true))
             {

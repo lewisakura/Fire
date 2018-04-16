@@ -2,18 +2,11 @@ using System;
 using System.Windows.Forms;
 using PSTaskDialog;
 using System.Diagnostics;
-using System.Management;
-using System.Reflection;
 
 namespace Fire
 {
     public partial class HotkeyHandler : Form
     {
-#if BETA
-        private String version = "%COMMIT_HASH%/master";
-#else
-        private String version = Assembly.GetEntryAssembly().GetName().Version.ToString();
-#endif
 
         public HotkeyHandler()
         {
@@ -25,13 +18,9 @@ namespace Fire
             CenterToScreen();
             cTaskDialog.ShowTaskDialogBox(this,
                 "About Fire",
-                $"Fire {version}",
-                "A tool for killing process trees.\nCreated by LewisTehMinerz / Lewis Crichton\nLicensed under the MIT license."
-#if BETA
-                + "\n\nYou are running a beta version of Fire. Things may not work correctly. Remember, always report bugs on the GitHub repository.",
-#else
-                ,
-#endif
+                $"Fire {Fire.Version}",
+                "A tool for killing process trees.\nCreated by LewisTehMinerz / Lewis Crichton\nLicensed under the MIT license." +
+                (Fire.Beta ? "\n\nYou are running a beta version of Fire. Things may not work correctly. Remember, always report bugs on the GitHub repository." : ""),
                 "",
                 "",
                 "",
@@ -77,35 +66,14 @@ namespace Fire
             var res = cTaskDialog.MessageBox(this,
                 "Kill it with Fire!",
                 "Are you sure?",
-                "Are you sure you want to kill process '{Process.GetProcessById(pid).ProcessName}' (PID {pid}) with Fire, killing all subprocesses that were spawned by it?" +
+                $"Are you sure you want to kill process '{Process.GetProcessById(pid).ProcessName}' (PID {pid}) with Fire, killing all subprocesses that were spawned by it?" +
                 "\n\nYou could lose unsaved work if any subprocesses containing edited documents were spawned by this process.",
                 eTaskDialogButtons.YesNo,
                 eSysIcons.Warning);
 
             if (res == DialogResult.Yes)
             {
-                KillProcessAndChildren(pid);
-            }
-        }
-
-        private static void KillProcessAndChildren(int pid)
-        {
-            var searcher = new ManagementObjectSearcher
-                    ("Select * From Win32_Process Where ParentProcessID=" + pid);
-            var moc = searcher.Get();
-            foreach (var o in moc)
-            {
-                var mo = (ManagementObject) o;
-                KillProcessAndChildren(Convert.ToInt32(mo["ProcessID"]));
-            }
-            try
-            {
-                var proc = Process.GetProcessById(pid);
-                proc.Kill();
-            }
-            catch (ArgumentException)
-            {
-                // Process already exited.
+                Fire.KillProcessAndChildren(pid);
             }
         }
 
