@@ -2,7 +2,7 @@ version: beta-{build}-{branch}
 image: Visual Studio 2017
 
 init:
-- ps: Update-AppveyorBuild -Version "beta-$($env:appveyor_repo_commit.substring(0,7))-master"
+  - ps: Update-AppveyorBuild -Version "beta-$($env:appveyor_repo_commit.substring(0,7))-master"
 
 cache:
   - packages -> **\packages.config
@@ -12,7 +12,7 @@ install:
   - nuget restore
 
 before_build:
-- ps: "#define BETA\n" + (Get-Content "Fire\HotkeyHandler.cs" -Raw).replace("$COMMIT_HASH$", "$($env:appveyor_repo_commit.substring(0,7))") | Set-Content "Fire\HotkeyHandler.cs"
+  - ps: "\"#define BETA\\n\" + (Get-Content \"Fire\\HotkeyHandler.cs\" -Raw).replace(\"$COMMIT_HASH$\", \"$($env:appveyor_repo_commit.substring(0,7))\") | Set-Content \"Fire\\HotkeyHandler.cs\""
 
 build:
   project: Fire.sln
