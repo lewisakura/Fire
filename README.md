@@ -12,9 +12,11 @@ Fire is a small tool developed to make it easy to kill process trees. All you ne
 Fire was developed because of a small issue I had. Whenever I ALT+F4 an application, I would expect all subprocesses to die. In some applications, this is not the case. Sometimes, applications do not correctly clean up themselves when they are closed, which means that subprocesses can linger around longer than they should. Fire forcefully closes the parent process and all subprocesses, which is quite useful in the case of a program malfunctioning and spawning a lot of subprocesses.
 
 ### Downloads
-You can download beta builds of Fire from [AppVeyor](https://ci.appveyor.com/project/LewisTehMinerz/Fire).
-
 You can download stable releases from the [Releases](https://github.com/LewisTehMinerz/Fire/releases) page.
+
+You can download the latest beta build of Fire [here](https://ci.appveyor.com/api/projects/LewisTehMinerz/Fire/artifacts/Fire/bin/Debug/Fire.exe).
+
+You can download previous beta builds of Fire from [AppVeyor](https://ci.appveyor.com/project/LewisTehMinerz/Fire/history).
 
 ### Special Thanks
 
